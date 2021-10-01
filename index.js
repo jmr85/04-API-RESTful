@@ -1,14 +1,13 @@
 const express = require('express');
-
-
-const PORT = process.env.PORT || 8080;
+const productsRoute = require('./routes/products');
 
 const app = express();
 
+const PORT = process.env.PORT || 8080;
+
+
 app.use(express.json()); //body-parser(deprecated)
-
-
-const productsRoute = require('./routes/products');
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", productsRoute);
 
