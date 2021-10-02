@@ -60,40 +60,7 @@
 		"thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png"
 	},
 	{
-		"id": 11
-	},
-	{
-		"id": 12
-	},
-	{
-		"id": 13
-	},
-	{
-		"id": 14
-	},
-	{
-		"id": 15
-	},
-	{
-		"id": 16
-	},
-	{
-		"id": 17
-	},
-	{
-		"id": 18
-	},
-	{
-		"id": 19
-	},
-	{
-		"id": 20,
-		"title": "Vino tinto",
-		"price": 500,
-		"thumbnail": "imagen vino"
-	},
-	{
-		"id": 21,
+		"id": 11,
 		"title": "Yerba mate cualquiera",
 		"price": 200,
 		"thumbnail": "imagen yeba"

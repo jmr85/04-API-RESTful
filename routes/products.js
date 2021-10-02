@@ -26,14 +26,22 @@ router.get('/products/:id', async (req, res) => {
     console.log(prodId);
     try {
         contenido = await contenedor.getById(prodId);
+        if (!contenido || contenido.id === null) {
+            res.status(404).send({
+                status: "error",
+                message: "No existe el producto !!!",
+            });
+        }
+        console.log(contenido);
+        res.status(200).send(contenido);
     } catch (error) {
         res.status(500).send({
             status: "error",
             message: "Product no encontrado !!!",
         });
     }
-    console.log(contenido);
-    return res.status(200).send(contenido);
+
+
 });
 
 // POST save -> revisar

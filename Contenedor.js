@@ -38,7 +38,7 @@ module.exports = class Contenedor {
         try {
             contenido = await fs.promises.readFile(`./${this.fileName}`, 'utf8')
             const contendoID = JSON.parse(contenido);
-            found = contendoID.find(element => element.id === id);
+            found = contendoID.find(element => element.id === Number(id));
         } catch (error) {
             console.log(error);
             throw error
