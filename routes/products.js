@@ -89,17 +89,30 @@ router.put('/products/:id', async (req, res) => {
 
 // DELETE
 router.delete('/products/:id', async (req, res) => {
+    let contenidoBorrado = [];
     let prodId = req.params.id;
     try {
-        await contenedor.deleteById(prodId);
+        contenidoBorrado = await contenedor.getById(Number(prodId));
+        if (contenidoBorrado || contenidoBorrado.id !== null || contenidoBorrado.id !== undefined || contenidoBorrado.id === Number(prodId)) {
+            contenidoBorrado = await contenedor.deleteById(prodId);
+            return res.status(200).send({
+                status: "ok",
+                message: "Product borrado !!!",
+                contenidoBorrado
+            });
+        } else {
+            res.status(404).send({
+                status: "error",
+                message: "No existe el producto !!!",
+            });
+        }
+        console.log(prodId);
     } catch (error) {
         res.status(500).send({
             status: "error",
             message: "Error al borrar product !!!",
         });
     }
-    console.log(prodId);
-    return res.status(200).send(`se ha borrado producto con id: ${prodId}`);
 });
 
 module.exports = router;

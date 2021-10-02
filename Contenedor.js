@@ -80,46 +80,20 @@ module.exports = class Contenedor {
     }
 
     async deleteById(id) {
-        // let contenido = []
-        // try {
-        //     contenido = await fs.promises.readFile(`./${this.fileName}`, 'utf8')
-        //     const contendoID = JSON.parse(contenido);
-        //     const found = contendoID.find(element => element.id === id);
-        //     console.log(found);
-        //     const arrayProductos = JSON.parse(found);
-        //     arrayProductos.push({
-        //         id: arrayProductos.length + 1,
-        //         title: title,
-        //         price: price,
-        //         thumbnail: thumbnail
-        //     });
-        //     await fs.promises.writeFile(`./${this.fileName}`, JSON.stringify(arrayProductos, null, '\t'));
-        // } catch (error) {
-        //     console.log(error);
-        //     throw error
-        // }
-
-
         let contenido = [];
-        //let found = {};
+        let objectBeforeDelete = [];
+        let objectDelete = [];
         try {
-            contenido = await fs.promises.readFile(`./${this.fileName}`, 'utf-8')
-            //const contendoID = JSON.parse(contenido);
-            contenido = contenido.find(element => element.id === id);
-            delete contenido.id;
+            const data = await fs.promises.readFile(`./${this.fileName}`, 'utf8')
+            contenido = JSON.parse(data);
+            objectBeforeDelete = contenido.filter(item => item.id === Number(id));
+            objectDelete = contenido.filter(item => item.id !== Number(id));
+            await fs.promises.writeFile(`./${this.fileName}`, JSON.stringify(objectDelete, null, '\t'));
+            contenido = await this.getById(id);
         } catch (error) {
-            console.log(error);
-            throw error
+            throw error;
         }
-
-        try {
-            await fs.promises.writeFile(`./${this.fileName}`, JSON.stringify(result, null, 2));
-            return console.log(`se ha borrado producto con id: ${id}`);
-        } catch (error) {
-            console.log(error);
-            throw error
-        }
-
+        return objectBeforeDelete;
 
     }
 
