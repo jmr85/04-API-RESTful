@@ -16,17 +16,19 @@
             <div class="col-md-12">
                 <form action="/api/products" method="POST" class="row g-3">
                     <div class="col-md-12">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" placeholder="Ingresa titulo" id="title" name="title">
+                        <label for="title" class="form-label">Title*</label>
+                        <input type="text" class="form-control" placeholder="Ingresa titulo" id="title" name="title"
+                            required>
                     </div>
                     <div class="col-md-12">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="number" class="form-control" placeholder="Ingresa precio" name="price" id="price">
+                        <label for="price" class="form-label">Price*</label>
+                        <input type="number" class="form-control" placeholder="Ingresa precio" name="price" id="price"
+                            required>
                     </div>
                     <div class="col-md-12">
-                        <label for="thumbnail" class="form-label">thumbnail</label>
+                        <label for="thumbnail" class="form-label">thumbnail*</label>
                         <input type="text" class="form-control" placeholder="Ingresa imagen o texto" name="thumbnail"
-                            id="thumbnail">
+                            id="thumbnail" required>
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Submit</button>
