@@ -8,14 +8,15 @@ module.exports = class Contenedor {
         try {
             const data = await fs.promises.readFile(`./${this.fileName}`, 'utf8')
             const arrayProductos = JSON.parse(data);
+            let generateID = arrayProductos.length + 1;
             arrayProductos.push({
-                id: arrayProductos.length + 1,
+                id: generateID,
                 title: title,
                 price: price,
                 thumbnail: thumbnail
             });
             await fs.promises.writeFile(`./${this.fileName}`, JSON.stringify(arrayProductos, null, '\t'));
-
+            return arrayProductos.find(item => item.id === generateID);
         } catch (error) {
             throw error;
         }

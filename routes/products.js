@@ -46,16 +46,20 @@ router.get('/products/:id', async (req, res) => {
 
 // POST save
 router.post('/products', async (req, res) => {
+    let saveObject = {};
     const { title, price, thumbnail } = req.body;
     try {
-        await contenedor.save(title, price, thumbnail);
+        saveObject = await contenedor.save(title, price, thumbnail);
+        return res.status(200).send(
+            saveObject
+        );
     } catch (error) {
         res.status(500).send({
             status: "error",
             message: "Error al guardar productos !!!",
         });
     }
-    return res.status(200).send("se ha guardado product");
+
 });
 
 // PUT actualiza product
