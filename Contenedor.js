@@ -51,6 +51,25 @@ module.exports = class Contenedor {
         return contenido;
     }
 
+    async update(id, params) {
+        let contenido = [];
+        const { title, price, thumbnail } = params;
+        try {
+            const data = await fs.promises.readFile(`./${this.fileName}`, 'utf8')
+            contenido = JSON.parse(data);
+            console.log("params desde Contenedor.update: ", params);
+            console.log("params.title desde Contenedor.update: ", title);
+            let objIndex = contenido.findIndex((obj => obj.id === Number(id)));
+            contenido[objIndex].title = title;
+            contenido[objIndex].price = price;
+            contenido[objIndex].thumbnail = thumbnail;
+            await fs.promises.writeFile(`./${this.fileName}`, JSON.stringify(contenido, null, '\t'));
+        } catch (error) {
+            throw error;
+        }
+        return contenido;
+    }
+
     async deleteAll() {
         try {
             await fs.promises.unlink(`./${this.fileName}`, 'utf8')

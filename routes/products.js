@@ -44,7 +44,7 @@ router.get('/products/:id', async (req, res) => {
 
 });
 
-// POST save -> revisar
+// POST save
 router.post('/products', async (req, res) => {
     const { title, price, thumbnail } = req.body;
     try {
@@ -62,15 +62,28 @@ router.post('/products', async (req, res) => {
 router.put('/products/:id', async (req, res) => {
     let contenido;
     let prodId = req.params.id;
+    let params = req.body;
+    console.log("metodo put prodId: ", prodId);
+    console.log("metodo put params: ", params);
     try {
-        contenido = await contenedor.getAll();
+        contenido = await contenedor.update(prodId, params);
+        if (!contenido || contenido.id === null) {
+            res.status(404).send({
+                status: "error",
+                message: "No existe el producto !!!",
+            });
+        }
+        console.log(contenido);
+        res.status(200).send({
+            status: "ok",
+            message: "Product actualizado !!!",
+        });
     } catch (error) {
         res.status(500).send({
             status: "error",
-            message: "Error al devolver los productos !!!",
+            message: "Product no encontrado !!!",
         });
     }
-    return res.status(200).send(contenido);
 });
 
 // DELETE
