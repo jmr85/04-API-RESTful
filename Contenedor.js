@@ -64,6 +64,7 @@ module.exports = class Contenedor {
             contenido[objIndex].price = price;
             contenido[objIndex].thumbnail = thumbnail;
             await fs.promises.writeFile(`./${this.fileName}`, JSON.stringify(contenido, null, '\t'));
+            contenido = await this.getById(id);
         } catch (error) {
             throw error;
         }

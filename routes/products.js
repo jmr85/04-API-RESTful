@@ -77,6 +77,7 @@ router.put('/products/:id', async (req, res) => {
         res.status(200).send({
             status: "ok",
             message: "Product actualizado !!!",
+            contenido
         });
     } catch (error) {
         res.status(500).send({

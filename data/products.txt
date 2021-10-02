@@ -1,8 +1,8 @@
 [
 	{
 		"id": 1,
-		"title": "FantaOriginal",
-		"price": 100,
+		"title": "FantaOriginal3",
+		"price": 110.05,
 		"thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"
 	},
 	{
